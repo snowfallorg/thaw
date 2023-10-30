@@ -1,5 +1,4 @@
 export async function fetchVersions(input) {
-  return ["v1.0.0", "v2.1.1"];
   const url = new URL(input.url);
 
   const [owner, repo] = url.pathname.split("/").filter(Boolean);
