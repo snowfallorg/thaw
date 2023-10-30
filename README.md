@@ -84,7 +84,7 @@ You can install this package by adding it as an input to your Nix Flake.
 }
 ```
 
-If you've added the overlay from this thaw, then in your system configuration you
+If you've added the overlay from this flake, then in your system configuration you
 can add the `snowfallorg.thaw` package.
 
 ```nix
