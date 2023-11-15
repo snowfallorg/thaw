@@ -1,5 +1,5 @@
 {
-  description = "My Nix packages";
+  description = "Snowfall Thaw";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
