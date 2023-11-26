@@ -1,23 +1,21 @@
-import { readFile, write } from "bun";
-
 export default async function edit({ file, from, to, insert }) {
-  const text = await readFile(file);
+  const text = await Bun.file(file).text();
 
   let cursor = 0;
   let line = 1;
   let col = 1;
 
-  let result = "";
+  let result = '';
 
   const eat = () => {
     let char = text[cursor];
 
-    if (char === "\r" && text[cursor + 1] === "\n") {
-      char += "\n";
+    if (char === '\r' && text[cursor + 1] === '\n') {
+      char += '\n';
       cursor += 2;
       line++;
       col = 1;
-    } else if (char === "\n") {
+    } else if (char === '\n') {
       cursor++;
       line++;
       col = 1;
@@ -51,5 +49,5 @@ export default async function edit({ file, from, to, insert }) {
     result += eat();
   }
 
-  await write(file, result);
+  await Bun.write(file, result);
 }
