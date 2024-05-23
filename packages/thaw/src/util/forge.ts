@@ -41,7 +41,18 @@ export async function getTargetUpgrade(input, major, init) {
   }
 
   const next = versions.reduce((latest, version) => {
-    const kind = semver.diff(semver.clean(latest), semver.clean(version));
+    const cleanLatest = semver.clean(latest);
+    const cleanVersion = semver.clean(version);
+
+    if (cleanVersion === null) {
+      return latest;
+    }
+
+    if (cleanLatest === null) {
+      return version;
+    }
+
+    const kind = semver.diff(cleanLatest, cleanVersion);
 
     if (
       semver.gt(semver.clean(version), semver.clean(latest)) &&
